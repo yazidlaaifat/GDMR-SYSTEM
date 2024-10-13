@@ -1,0 +1,43 @@
+<div class="layout">
+  <div class="sidebar">
+    <div class="user-info">
+      <div class="user-avatar"></div>
+      <div class="user-details">
+        <p>{{ currentUser.username }}</p>
+        <p>{{ currentUser.role }}</p>
+        <hr class="divider">
+      </div>
+    </div>
+    <ul class="menu">
+      <li><a routerLink="/collaborateur-dashboard"><img src="assets/dashboard-icon.png" alt="Dashboard Icon" class="menu-icon">Dashboard</a></li>
+      <li><a routerLink="/collaborateur-schedule" style="color: #6e3282; font-weight: bold;"><img src="assets/schedule-icon.png" alt="Schedule Icon" class="menu-icon">Schedule</a></li>
+      <li><a routerLink="/collaborateur-profile"><img src="assets/profcollab-icon.png" alt="Profile Icon" class="menu-icon">My Profile</a></li>
+      <li><a routerLink="/collaborateur-visits"><img src="assets/visits-icon.png" alt="Demande Icon" class="menu-icon">My Visits</a></li>
+    </ul>
+  </div>
+  <div class="main-content">
+    <div class="top-bar">
+      <div class="logo">
+        <img src="assets/logo.png" alt="SQLI Digital Experience Logo" class="logo-icon">
+      </div>
+      <div class="logout">
+        <button (click)="logout()"><img src="assets/logout-icon.png" alt="Logout Icon" class="logout-icon"> Logout</button>
+      </div>
+    </div>
+    <div class="content">
+      <h2>Select a Time Slot for Your Visit</h2>
+      <div class="creneaux-container" *ngIf="creneaux && creneaux.length > 0">
+        <div *ngFor="let creneau of creneaux" class="creneau-item">
+          <label>
+            <input type="radio" name="creneau" [(ngModel)]="selectedCreneauId" [value]="creneau.idCreneau">
+            {{ creneau.dateDebut | date:'short' }} - {{ creneau.dateFin | date:'short' }}
+          </label>
+        </div>
+        <button (click)="confirmCreneau()" class="confirm-button">Confirm Selection</button>
+      </div>
+      <div class="no-creneaux" *ngIf="!creneaux || creneaux.length === 0">
+        <p>No créneaux to choose from for now. Contact the HR department if you need to have a medical visit planned.</p>
+      </div>
+    </div>
+  </div>
+</div>

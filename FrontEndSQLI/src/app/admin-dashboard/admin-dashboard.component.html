@@ -1,0 +1,101 @@
+<div class="layout">
+  <div class="sidebar">
+    <div class="user-info">
+      <div class="user-avatar"></div>
+      <div class="user-details">
+        <p>{{ currentUser.username }}</p>
+        <p>{{ currentUser.role }}</p>
+        <hr class="divider">
+      </div>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div class="top-bar">
+      <div class="logo">
+        <img src="assets/logo.png" alt="SQLI Digital Experience Logo" class="logo-icon">
+      </div>
+      <div class="logout">
+        <button (click)="logout()">
+          <img src="assets/logout-icon.png" alt="Logout Icon" class="logout-icon"> Logout
+        </button>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="actions">
+        <div class="action-icon" (click)="toggleUserList()">
+          <img src="assets/user-icon.png" alt="User List">
+          <p>User List</p>
+        </div>
+        <div class="action-icon" (click)="showCreateUserForm()">
+          <img src="assets/create-user-icon.png" alt="Create User">
+          <p>Create User</p>
+        </div>
+      </div>
+
+      <div *ngIf="isUserListVisible" class="user-list">
+        <h2 class="user-list-title">User List</h2>
+        <div *ngIf="users.length === 0">No current existing users</div>
+        <div *ngIf="users.length > 0">
+          <table>
+            <thead>
+            <tr>
+              <th>Username</th>
+              <th>Nom</th>
+              <th>Prenom</th>
+              <th>Role</th>
+              <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let user of users">
+              <td>{{ user.username }}</td>
+              <td>{{ user.nom }}</td>
+              <td>{{ user.prenom }}</td>
+              <td>{{ user.role }}</td>
+              <td>
+                <button class="delete-button" (click)="deleteUser(user.idUser)">Delete</button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div *ngIf="isCreateUserFormVisible" class="modal">
+        <div class="modal-content">
+          <span class="close" (click)="closeCreateUserForm()">&times;</span>
+          <h2>Create User</h2>
+          <form (ngSubmit)="createUser()">
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" id="username" [(ngModel)]="newUser.username" name="username" required>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" id="password" [(ngModel)]="newUser.password" name="password" required>
+            </div>
+            <div class="form-group">
+              <label for="nom">Nom</label>
+              <input type="text" id="nom" [(ngModel)]="newUser.nom" name="nom" required>
+            </div>
+            <div class="form-group">
+              <label for="prenom">Prenom</label>
+              <input type="text" id="prenom" [(ngModel)]="newUser.prenom" name="prenom" required>
+            </div>
+            <div class="form-group">
+              <label for="role">Role</label>
+              <select id="role" [(ngModel)]="newUser.role" name="role" required>
+                <option value="COLLABORATEUR">Collaborateur</option>
+                <option value="CHARGERH">ChargéRH</option>
+                <option value="MEDECIN">Medecin</option>
+              </select>
+            </div>
+            <button type="submit" class="create-user-btn">Create User</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

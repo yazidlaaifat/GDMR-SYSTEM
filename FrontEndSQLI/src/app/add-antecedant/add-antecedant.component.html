@@ -1,0 +1,12 @@
+<div class="modal">
+  <div class="modal-content">
+    <span class="close" (click)="onClose()">&times;</span>
+    <form [formGroup]="antecedantForm" (ngSubmit)="onSubmit()">
+      <label for="dateAntecedant">Date:</label>
+      <input id="dateAntecedant" formControlName="dateAntecedant" type="date">
+      <label for="description">Description:</label>
+      <input id="description" formControlName="description" type="text">
+      <button type="submit" [disabled]="!antecedantForm.valid">Add</button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,104 @@
+<div class="layout">
+  <div class="sidebar">
+    <div class="user-info">
+      <div class="user-avatar"></div>
+      <div class="user-details">
+        <p>{{ currentUser.username }}</p>
+        <p>{{ currentUser.role }}</p>
+        <hr class="divider">
+      </div>
+    </div>
+    <ul class="menu">
+      <li><a routerLink="/charge-rh-dashboard"><img src="assets/dashboard-icon.png" alt="Dashboard Icon" class="menu-icon">Dashboard</a></li>
+      <li><a routerLink="/charge-rh-creneau" style="color: #6e3282; font-weight: bold;"><img src="assets/schedule-icon.png" alt="Schedule Icon" class="menu-icon">Schedule</a></li>
+      <li><a routerLink="/charge-rh-doctors"><img src="assets/docprofile-icon.png" alt="Doctors Icon" class="menu-icon">Doctors</a></li>
+      <li><a routerLink="/charge-rh-collaborateurs"><img src="assets/patients-icon.png" alt="Collaborators Icon" class="menu-icon">Collaborators</a></li>
+      <li><a routerLink="/charge-rh-visits"><img src="assets/visits-icon.png" alt="Visits Icon" class="menu-icon">Visits</a></li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <div class="top-bar">
+      <div class="logo">
+        <img src="assets/logo.png" alt="SQLI Digital Experience Logo" class="logo-icon">
+      </div>
+      <div class="logout">
+        <button (click)="logout()"><img src="assets/logout-icon.png" alt="Logout Icon" class="logout-icon"> Logout</button>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="left-section">
+        <button class="open-modal-btn" (click)="openCreneauModal()">Create Creneau</button>
+
+        <div *ngIf="isCreneauModalOpen" class="modal">
+          <div class="modal-content">
+            <span class="close-btn" (click)="closeCreneauModal()">&times;</span>
+            <h2 class="purple-underline">Create Creneau</h2>
+
+            <form (submit)="submitCreneau()">
+              <div class="form-group">
+                <label for="medecin">Select Medecin:</label>
+                <select id="medecin" [(ngModel)]="selectedMedecinId" name="medecin" required>
+                  <option *ngFor="let medecin of medecins" [value]="medecin.id">{{ medecin.nom }} {{ medecin.prenom }}</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="collaborateur">Select Collaborateur:</label>
+                <select id="collaborateur" [(ngModel)]="selectedCollaborateurId" name="collaborateur" required>
+                  <option *ngFor="let collaborateur of collaborateurs" [value]="collaborateur.id">{{ collaborateur.nom }} {{ collaborateur.prenom }}</option>
+                </select>
+              </div>
+
+              <button type="submit" class="submit-btn">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="separator"></div>
+
+      <div class="right-section">
+        <h2 class="purple-title">Visits awaiting confirmation:</h2>
+
+        <div *ngIf="visitsToConfirm.length > 0; else noVisits">
+
+          <div *ngFor="let visit of visitsToConfirm" class="visit-item">
+            <p>Visit on {{ visit.dateVisite | date:'short' }} for {{ visit.collaborateurNom }} {{ visit.collaborateurPrenom }}</p>
+            <button (click)="openConfirmForm(visit)" class="confirm-btn">Confirm</button>
+            <button (click)="cancelVisit(visit.id)" class="cancel-btn">Cancel</button>
+          </div>
+        </div>
+
+        <ng-template #noVisits>
+          <p>No visits to confirm.</p>
+        </ng-template>
+
+        <div *ngIf="isConfirmFormOpen" class="modal">
+          <div class="modal-content">
+            <span class="close-btn" (click)="closeConfirmForm()">&times;</span>
+            <h2 class="purple-underline">Confirm Visit</h2>
+
+            <form (ngSubmit)="submitConfirmForm()">
+              <div class="form-group">
+                <label for="motif">Motif:</label>
+                <input type="text" id="motif" [(ngModel)]="confirmFormData.motif" name="motif" required>
+              </div>
+
+              <div class="form-group">
+                <label for="typesVisite">Type of Visit:</label>
+                <select id="typesVisite" [(ngModel)]="confirmFormData.typesVisite" name="typesVisite" required>
+                  <option *ngFor="let type of typesVisiteOptions" [value]="type">{{ type }}</option>
+                </select>
+              </div>
+
+              <button type="submit" class="submit-btn">Confirm</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+

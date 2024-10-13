@@ -1,0 +1,45 @@
+<div class="layout">
+  <div class="sidebar">
+    <div class="user-info">
+      <div class="user-avatar"></div>
+      <div class="user-details">
+        <p>{{ currentUser.username }}</p>
+        <p>{{ currentUser.role }}</p>
+        <hr class="divider">
+      </div>
+    </div>
+    <ul class="menu">
+      <li><a routerLink="/collaborateur-dashboard" style="color: #6e3282; font-weight: bold;"><img src="assets/dashboard-icon.png" alt="Dashboard Icon" class="menu-icon">Dashboard</a></li>
+      <li><a routerLink="/collaborateur-schedule" ><img src="assets/schedule-icon.png" alt="Schedule Icon" class="menu-icon">Schedule</a></li>
+      <li><a routerLink="/collaborateur-profile"><img src="assets/profcollab-icon.png" alt="Demande Icon" class="menu-icon">My Profile</a></li>
+      <li><a routerLink="/collaborateur-visits"><img src="assets/visits-icon.png" alt="Demande Icon" class="menu-icon">My Visits</a></li>
+    </ul>
+  </div>
+  <div class="main-content">
+    <div class="top-bar">
+      <div class="logo">
+        <img src="assets/logo.png" alt="SQLI Digital Experience Logo" class="logo-icon">
+      </div>
+      <div class="logout">
+        <button (click)="logout()"><img src="assets/logout-icon.png" alt="Logout Icon" class="logout-icon"> Logout</button>
+      </div>
+    </div>
+    <div class="content dashboard">
+      <div class="dashboard-box" routerLink="/collaborateur-schedule" title="Go to Schedule">
+        <img src="assets/schedule-icon-large.png" alt="Schedule">
+        <h2>Schedule</h2>
+        <p>This section for choosing the best time for your visits.</p>
+      </div>
+      <div class="dashboard-box" routerLink="/collaborateur-profile" title="Go to My Profile">
+        <img src="assets/profile-icon-large.png" alt="My Profile">
+        <h2>My Profile</h2>
+        <p>Verify and fill your personal medical information.</p>
+      </div>
+      <div class="dashboard-box" routerLink="/collaborateur-visits" title="Go to My Visits">
+        <img src="assets/visits-icon-large.png" alt="My Visits">
+        <h2>My Visits</h2>
+        <p>Check out your planned visits and visit history.</p>
+      </div>
+    </div>
+  </div>
+</div>

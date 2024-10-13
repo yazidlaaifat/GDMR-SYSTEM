@@ -1,0 +1,245 @@
+.layout {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #e0e0e0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+.user-info {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.user-avatar {
+  width: 100px;
+  height: 100px;
+  background-color: #ccc;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.user-details {
+  margin-top: 10px;
+}
+
+.divider {
+  border: 0;
+  height: 1px;
+  background: #000;
+  margin: 10px 0;
+}
+
+.menu {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+}
+
+.menu li {
+  width: 100%;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.menu a {
+  text-decoration: none;
+  color: black;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.menu a img {
+  margin-right: 10px;
+  width: 46px;
+  height: 38px;
+}
+
+.menu a:hover {
+  background-color: #d3d3d3;
+}
+
+.main-content {
+  margin-left: 250px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #d3d3d3;
+  padding: 10px 20px;
+}
+
+.top-bar .logo img {
+  height: 171px;
+  width: 207px;
+}
+
+.logout button {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.logout img {
+  margin-right: 5px;
+  width: 69px;
+  height: 57px;
+}
+
+.content {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.logo-icon {
+  width: 207px;
+  height: 171px;
+}
+
+.total-appointments {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.total-appointments p {
+  margin: 5px 0;
+  font-size: 18px;
+}
+
+.appointments {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.appointments h3 {
+  color: #6e3282;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.appointments table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.appointments th, .appointments td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.appointments th {
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+.details-button {
+  background-color: #6e3282;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.details-button:hover {
+  background-color: #55216b;
+}
+
+.upload-schedule {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.upload-schedule h3 {
+  color: #6e3282;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-schedule .upload-icon {
+  margin-right: 10px;
+  width: 65px;
+  height: 65px;
+}
+
+.upload-label {
+  color: green;
+  margin-bottom: 10px;
+}
+
+.upload-schedule input {
+  display: none;
+}
+
+.upload-schedule .select-button {
+  background-color: #6e3282;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  border: none;
+}
+
+.upload-schedule .select-button:hover {
+  background-color: #55216b;
+}
+
+.upload-schedule p {
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+.upload-schedule p.no-file {
+  color: red;
+}
+
+.upload-schedule p.file-selected {
+  color: black;
+}
+
+.upload-schedule button {
+  background-color: #6e3282;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.upload-schedule button:hover {
+  background-color: #55216b;
+}

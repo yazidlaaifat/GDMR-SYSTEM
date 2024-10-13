@@ -1,0 +1,70 @@
+<div class="layout">
+  <div class="sidebar">
+    <div class="user-info">
+      <div class="user-avatar"></div>
+      <div class="user-details">
+        <p>{{ currentUser.username }}</p>
+        <p>{{ currentUser.role }}</p>
+        <hr class="divider">
+      </div>
+    </div>
+    <ul class="menu">
+      <li><a routerLink="/medecin-dashboard"><img src="assets/dashboard-icon.png" alt="Dashboard Icon" class="menu-icon">Dashboard</a></li>
+      <li><a routerLink="/medecin-profile" style="color: #6e3282; font-weight: bold;"><img src="assets/docprofile-icon.png" alt="Doctors Icon" class="menu-icon">My Profile</a></li>
+      <li><a routerLink="/activevisits-list"><img src="assets/patients-icon.png" alt="Collaborators Icon" class="menu-icon">My Patients</a></li>
+      <li><a routerLink="/medecin-visits"><img src="assets/visits-icon.png" alt="Visits Icon" class="menu-icon">Visits</a></li>
+    </ul>
+  </div>
+  <div class="main-content">
+    <div class="top-bar">
+      <div class="logo">
+        <img src="assets/logo.png" alt="SQLI Digital Experience Logo" class="logo-icon">
+      </div>
+      <div class="logout">
+        <button (click)="logout()"><img src="assets/logout-icon.png" alt="Logout Icon" class="logout-icon"> Logout</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="medecin-profile-container">
+        <div *ngIf="currentUser && currentUser.role === 'MEDECIN'" class="medecin-profile-card">
+          <h2>My Profile</h2>
+          <div *ngIf="profileFilled(); else notFilled" class="medecin-profile-details">
+            <p><strong>Username:</strong> {{ currentUser.username }}</p>
+            <p><strong>Role:</strong> {{ currentUser.role }}</p>
+            <p><strong>Site de Travail:</strong> {{ currentUser.siteTravail }}</p>
+            <p><strong>Spécialité:</strong> {{ currentUser.specialite }}</p>
+            <p><strong>Qualification:</strong> {{ currentUser.qualification }}</p>
+            <p><strong>Experience:</strong> {{ currentUser.experience }}</p>
+            <button (click)="showForm()" class="btn-purple">Modify</button>
+          </div>
+          <ng-template #notFilled>
+            <p>Profile not yet filled. <button (click)="showForm()" class="btn-purple">Click here to insert</button></p>
+          </ng-template>
+
+          <div *ngIf="showingForm" class="form-popup">
+            <form (ngSubmit)="updateProfile()">
+              <div>
+                <label for="siteTravail">Site de Travail:</label>
+                <input type="text" id="siteTravail" [(ngModel)]="currentUser.siteTravail" name="siteTravail">
+              </div>
+              <div>
+                <label for="specialite">Spécialité:</label>
+                <input type="text" id="specialite" [(ngModel)]="currentUser.specialite" name="specialite">
+              </div>
+              <div>
+                <label for="qualification">Qualification:</label>
+                <input type="text" id="qualification" [(ngModel)]="currentUser.qualification" name="qualification">
+              </div>
+              <div>
+                <label for="experience">Experience:</label>
+                <input type="text" id="experience" [(ngModel)]="currentUser.experience" name="experience">
+              </div>
+              <button type="submit" class="btn-purple">Save</button>
+              <button type="button" (click)="hideForm()" class="btn-grey">Cancel</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

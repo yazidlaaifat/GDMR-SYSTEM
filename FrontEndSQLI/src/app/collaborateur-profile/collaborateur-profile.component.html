@@ -1,0 +1,124 @@
+<div class="layout">
+  <div class="sidebar">
+    <div class="user-info">
+      <div class="user-avatar"></div>
+      <div class="user-details">
+        <p>{{ currentUser.username }}</p>
+        <p>{{ currentUser.role }}</p>
+        <hr class="divider">
+      </div>
+    </div>
+    <ul class="menu">
+      <li><a routerLink="/collaborateur-dashboard"><img src="assets/dashboard-icon.png" alt="Dashboard Icon" class="menu-icon">Dashboard</a></li>
+      <li><a routerLink="/collaborateur-schedule"><img src="assets/schedule-icon.png" alt="Schedule Icon" class="menu-icon">Schedule</a></li>
+      <li><a routerLink="/collaborateur-profile" style="color: #6e3282; font-weight: bold;"><img src="assets/profcollab-icon.png" alt="Profile Icon" class="menu-icon">My Profile</a></li>
+      <li><a routerLink="/collaborateur-visits"><img src="assets/visits-icon.png" alt="Visits Icon" class="menu-icon">My Visits</a></li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <div class="top-bar">
+      <div class="logo">
+        <img src="assets/logo.png" alt="SQLI Digital Experience Logo" class="logo-icon">
+      </div>
+      <div class="logout">
+        <button (click)="logout()"><img src="assets/logout-icon.png" alt="Logout Icon" class="logout-icon"> Logout</button>
+      </div>
+    </div>
+
+    <div class="content">
+      <h2>My Profile</h2>
+
+
+      <div class="profile-section">
+        <h3>Department</h3>
+        <div class="box">
+          <p>{{ collaborateur.departement }}</p>
+        </div>
+      </div>
+
+
+      <div class="profile-section">
+        <h3>Medical Information</h3>
+        <div class="box">
+          <table class="profile-table">
+            <tr><td>Sexe:</td><td>{{ dossierMedical.sexe }}</td></tr>
+            <tr><td>Height:</td><td>{{ dossierMedical.height }} cm</td></tr>
+            <tr><td>Weight:</td><td>{{ dossierMedical.weight }} kg</td></tr>
+            <tr><td>Groupe Sanguin:</td><td>{{ dossierMedical.groupeSanguin }}</td></tr>
+            <tr><td>Allergies:</td><td>{{ dossierMedical.allergies }}</td></tr>
+            <tr><td>Medical History:</td><td>{{ dossierMedical.medicalHistory }}</td></tr>
+            <tr><td>Medications:</td><td>{{ dossierMedical.medications }}</td></tr>
+          </table>
+        </div>
+      </div>
+
+
+      <div class="profile-section">
+        <h3>Antecedants</h3>
+        <div class="box">
+          <table class="profile-table">
+            <thead>
+            <tr><th>Date</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let antecedant of dossierMedical.antecedants">
+              <td>{{ antecedant.dateAntecedant | date:'shortDate' }}</td>
+              <td>{{ antecedant.description }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <button (click)="toggleEdit()" *ngIf="!editing" class="modify-btn">Modify Profile</button>
+
+
+      <div *ngIf="editing" class="modal">
+        <div class="modal-content">
+          <h3>Update Your Profile</h3>
+          <form (ngSubmit)="updateProfile()">
+            <label>Department:</label>
+            <textarea [(ngModel)]="collaborateur.departement" name="department"></textarea>
+            <label>Sexe:</label>
+            <select [(ngModel)]="dossierMedical.sexe" name="sexe">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+
+            <label>Height (cm):</label>
+            <input type="number" [(ngModel)]="dossierMedical.height" name="height" required>
+
+            <label>Weight (kg):</label>
+            <input type="number" [(ngModel)]="dossierMedical.weight" name="weight" required>
+
+            <label>Groupe Sanguin:</label>
+            <select [(ngModel)]="dossierMedical.groupeSanguin" name="groupeSanguin">
+              <option value="O+">O+</option>
+              <option value="O-">O-</option>
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B-">B-</option>
+              <option value="AB+">AB+</option>
+              <option value="AB-">AB-</option>
+            </select>
+
+            <label>Allergies:</label>
+            <textarea [(ngModel)]="dossierMedical.allergies" name="allergies"></textarea>
+
+            <label>Medical History:</label>
+            <textarea [(ngModel)]="dossierMedical.medicalHistory" name="medicalHistory"></textarea>
+
+            <label>Medications:</label>
+            <textarea [(ngModel)]="dossierMedical.medications" name="medications"></textarea>
+
+            <button type="submit" class="submit-btn">Submit</button>
+            <button type="button" (click)="cancelEdit()" class="cancel-btn">Cancel</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="layout">
+  <div class="sidebar">
+    <div class="user-info">
+      <div class="user-avatar"></div>
+      <div class="user-details">
+        <p>{{ currentUser.username }}</p>
+        <p>{{ currentUser.role }}</p>
+        <hr class="divider">
+      </div>
+    </div>
+    <ul class="menu">
+      <li><a routerLink="/medecin-dashboard" style="color: #6e3282; font-weight: bold;"><img src="assets/dashboard-icon.png" alt="Dashboard Icon" class="menu-icon">Dashboard</a></li>
+      <li><a routerLink="/medecin-profile"><img src="assets/docprofile-icon.png" alt="Doctors Icon" class="menu-icon">My Profile</a></li>
+      <li><a routerLink="/activevisits-list"><img src="assets/patients-icon.png" alt="Collaborators Icon" class="menu-icon">My Patients</a></li>
+      <li><a routerLink="/medecin-visits"><img src="assets/visits-icon.png" alt="Visits Icon" class="menu-icon">Visits</a></li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <div class="top-bar">
+      <div class="logo">
+        <img src="assets/logo.png" alt="SQLI Digital Experience Logo" class="logo-icon">
+      </div>
+      <div class="logout">
+        <button (click)="logout()"><img src="assets/logout-icon.png" alt="Logout Icon" class="logout-icon"> Logout</button>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="total-appointments">
+        <p>Total Appointments Planned</p>
+        <p>{{ plannedVisitsCount }}</p>
+      </div>
+
+      <div class="appointments">
+        <h3>My Appointments</h3>
+        <table>
+          <thead>
+          <tr>
+            <th>Time</th>
+            <th>Name</th>
+            <th>Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let visit of plannedVisits">
+            <td>{{ visit.dateVisite | date:'shortTime' }}</td>
+            <td>{{ visit.prenom }} {{ visit.nom }}</td>
+            <td><button class="details-button" (click)="navigateToActiveVisitsList()">Details</button></td>          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="upload-schedule">
+        <h3><img src="assets/upload-icon.png" alt="Upload Icon" class="upload-icon">Upload Schedule</h3>
+        <p class="upload-label">UPLOAD CSV FILE</p>
+        <input type="file" id="file" (change)="onFileSelected($event)">
+        <button class="select-button" (click)="selectFile()">Select CSV File</button>
+        <p [ngClass]="{'no-file': !selectedFile, 'file-selected': selectedFile}">
+          {{ selectedFile ? selectedFile.name : 'No File Selected' }}
+        </p>
+        <button (click)="uploadFile()">Upload and process</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+2024-09-25T14:44:30.368+01:00  WARN 7436 --- [GDMR] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=10h24s883ms6µs).
+2024-09-25T18:45:08.905+01:00  WARN 7436 --- [GDMR] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3h37m38s179ms749µs500ns).
+2024-09-25T20:36:34.421+01:00  WARN 7436 --- [GDMR] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=33m54s220ms37µs300ns).
+2024-09-25T20:47:54.097+01:00  INFO 7436 --- [GDMR] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-25T20:47:54.122+01:00  INFO 7436 --- [GDMR] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-09-25T20:47:54.143+01:00  INFO 7436 --- [GDMR] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

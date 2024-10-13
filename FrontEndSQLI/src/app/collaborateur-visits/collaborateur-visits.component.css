@@ -1,0 +1,196 @@
+.layout {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #e0e0e0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+.user-info {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.user-avatar {
+  width: 100px;
+  height: 100px;
+  background-color: #ccc;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.user-details {
+  margin-top: 10px;
+}
+
+.divider {
+  border: 0;
+  height: 1px;
+  background: #000;
+  margin: 10px 0;
+}
+
+.menu {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+}
+
+.menu li {
+  width: 100%;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.menu a {
+  text-decoration: none;
+  color: black;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.menu a img {
+  margin-right: 10px;
+  width: 46px;
+  height: 38px;
+}
+
+.menu a:hover {
+  background-color: #d3d3d3;
+}
+
+.main-content {
+  margin-left: 250px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #d3d3d3;
+  padding: 10px 20px;
+}
+
+.top-bar .logo img {
+  height: 171px;
+  width: 207px;
+}
+
+.logout button {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.logout img {
+  margin-right: 5px;
+  width: 69px;
+  height: 57px;
+}
+
+.content {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.logo-icon {
+  width: 207px;
+  height: 171px;
+}
+
+.modal {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  border-radius: 10px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.section {
+  flex: 1;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.section-title {
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  color: #6e3282;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.visits-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.visits-table th,
+.visits-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.visits-table th {
+  background-color: #6e3282;
+  color: white;
+}
+
+.visits-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.visits-table tr:hover {
+  background-color: #ddd;
+  transition: background-color 0.3s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

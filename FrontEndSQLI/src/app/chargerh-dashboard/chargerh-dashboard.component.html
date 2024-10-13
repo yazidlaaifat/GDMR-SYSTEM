@@ -1,0 +1,73 @@
+<div class="layout">
+  <div class="sidebar">
+    <div class="user-info">
+      <div class="user-avatar"></div>
+      <div class="user-details">
+        <p>{{ currentUser.username }}</p>
+        <p>{{ currentUser.role }}</p>
+        <hr class="divider">
+      </div>
+    </div>
+    <ul class="menu">
+      <li><a routerLink="/charge-rh-dashboard" style="color: #6e3282; font-weight: bold;"><img src="assets/dashboard-icon.png" alt="Dashboard Icon" class="menu-icon">Dashboard</a></li>
+      <li><a routerLink="/charge-rh-creneau"><img src="assets/schedule-icon.png" alt="Schedule Icon" class="menu-icon">Schedule</a></li>
+      <li><a routerLink="/charge-rh-doctors"><img src="assets/docprofile-icon.png" alt="Doctors Icon" class="menu-icon">Doctors</a></li>
+      <li><a routerLink="/charge-rh-collaborateurs"><img src="assets/patients-icon.png" alt="Collaborators Icon" class="menu-icon">Collaborators</a></li>
+      <li><a routerLink="/charge-rh-visits"><img src="assets/visits-icon.png" alt="Visits Icon" class="menu-icon">Visits</a></li>
+    </ul>
+  </div>
+  <div class="main-content">
+    <div class="top-bar">
+      <div class="logo">
+        <img src="assets/logo.png" alt="SQLI Digital Experience Logo" class="logo-icon">
+      </div>
+      <div class="logout">
+        <button (click)="logout()"><img src="assets/logout-icon.png" alt="Logout Icon" class="logout-icon"> Logout</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="dashboard-header">
+        <div class="appointment-summary">
+          <div class="appointment-card">
+            <p>Total Appointments - Today</p>
+            <h2>{{ totalAppointmentsToday }}</h2>
+          </div>
+          <div class="appointment-card">
+            <p>Total Appointments - This Week</p>
+            <h2>{{ totalAppointmentsWeek }}</h2>
+          </div>
+        </div>
+        <div class="appointments-today">
+          <h3>Today's Appointments</h3>
+          <table>
+            <tr>
+              <th>Time</th>
+              <th>Name</th>
+              <th>Doctor Name</th>
+              <th>Symptoms</th>
+            </tr>
+            <tr *ngFor="let appointment of todayAppointments">
+              <td>{{ appointment.time }}</td>
+              <td>{{ appointment.patientName }}</td>
+              <td>{{ appointment.doctorName }}</td>
+              <td>{{ appointment.motif }}</td>
+            </tr>
+          </table>
+        </div>
+        <div class="doctor-availability">
+          <h3>Doctor's Availability</h3>
+          <ul>
+            <li *ngFor="let doctor of availableDoctors">
+              <span class="status" [ngClass]="{'green': doctor.availability, 'red': !doctor.availability}"></span>
+              <div>
+                <span>{{ doctor.nom }} {{ doctor.prenom}}</span><br>
+                <small>{{ doctor.specialite }}</small>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

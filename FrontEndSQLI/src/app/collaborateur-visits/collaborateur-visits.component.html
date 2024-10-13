@@ -1,0 +1,101 @@
+<div class="layout">
+  <div class="sidebar">
+    <div class="user-info">
+      <div class="user-avatar"></div>
+      <div class="user-details">
+        <p>{{ currentUser.username }}</p>
+        <p>{{ currentUser.role }}</p>
+        <hr class="divider">
+      </div>
+    </div>
+    <ul class="menu">
+      <li><a routerLink="/collaborateur-dashboard"><img src="assets/dashboard-icon.png" alt="Dashboard Icon" class="menu-icon">Dashboard</a></li>
+      <li><a routerLink="/collaborateur-schedule" ><img src="assets/schedule-icon.png" alt="Schedule Icon" class="menu-icon">Schedule</a></li>
+      <li><a routerLink="/collaborateur-profile"><img src="assets/profcollab-icon.png" alt="Demande Icon" class="menu-icon">My Profile</a></li>
+      <li><a routerLink="/collaborateur-visits" style="color: #6e3282; font-weight: bold;"><img src="assets/visits-icon.png" alt="Demande Icon" class="menu-icon">My Visits</a></li>
+    </ul>
+  </div>
+  <div class="main-content">
+    <div class="top-bar">
+      <div class="logo">
+        <img src="assets/logo.png" alt="SQLI Digital Experience Logo" class="logo-icon">
+      </div>
+      <div class="logout">
+        <button (click)="logout()"><img src="assets/logout-icon.png" alt="Logout Icon" class="logout-icon"> Logout</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="section">
+        <h2 class="section-title">Planned Visits (Planifié)</h2>
+        <table class="visits-table">
+          <thead>
+          <tr>
+            <th>Date</th>
+            <th>Motif</th>
+            <th>Status</th>
+            <th>Type</th>
+            <th>Medecin</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let visit of plannedVisits">
+            <td>{{ visit.dateVisite | date: 'shortDate' }}</td>
+            <td>{{ visit.motif }}</td>
+            <td>{{ visit.statusVisite }}</td>
+            <td>{{ visit.typesVisite }}</td>
+            <td>{{ visit.medecinNom }} {{ visit.medecinPrenom }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">Awaiting Confirmation</h2>
+        <table class="visits-table">
+          <thead>
+          <tr>
+            <th>Date</th>
+            <th>Motif</th>
+            <th>Status</th>
+            <th>Type</th>
+            <th>Medecin</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let visit of awaitingConfirmationVisits">
+            <td>{{ visit.dateVisite | date: 'shortDate' }}</td>
+            <td>{{ visit.motif || 'N/A' }}</td>
+            <td>{{ visit.statusVisite || 'N/A' }}</td>
+            <td>{{ visit.typesVisite || 'N/A' }}</td>
+            <td>{{ visit.medecinNom }} {{ visit.medecinPrenom }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">Visit History (Passé)</h2>
+        <table class="visits-table">
+          <thead>
+          <tr>
+            <th>Date</th>
+            <th>Motif</th>
+            <th>Status</th>
+            <th>Type</th>
+            <th>Medecin</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let visit of visitHistory">
+            <td>{{ visit.dateVisite | date: 'shortDate' }}</td>
+            <td>{{ visit.motif }}</td>
+            <td>{{ visit.statusVisite }}</td>
+            <td>{{ visit.typesVisite }}</td>
+            <td>{{ visit.medecinNom }} {{ visit.medecinPrenom }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
